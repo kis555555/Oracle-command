@@ -1,0 +1,95 @@
+SELECT * FROM topic;
+
+SELECT id,title,created FROM topic;
+
+SELECT * FROM topic WHERE id = 1;
+
+SELECT * FROM topic WHERE id > 1;
+
+SELECT id,title,created FROM topic WHERE id = 1;
+
+SELECT * FROM topic ORDER BY id DESC;
+
+SELECT * FROM topic
+	OFFSET 1 ROWS
+	FETCH NEXT 2 ROWS ONLY;
+
+INSERT INTO topic
+(id,title,description,created,author_id)
+VALUES(SEQ_TOPIC.NEXTVAL,'Ruby','Ruby is ...',SYSDATE,3);
+
+INSERT INTO topic
+(id,title,description,created)
+VALUES(SEQ_TOPIC.NEXTVAL,'MYSQL','MYSQL is ...',SYSDATE);
+
+INSERT INTO topic
+(id,title,description,created)
+VALUES(SEQ_TOPIC.NEXTVAL,'ORACLE','ORACLE is ...',SYSDATE);
+
+INSERT INTO topic
+(id,title,description,created)
+VALUES(4,'MongoDB','MongoDB is ...',SYSDATE);
+
+CREATE TABLE topic(
+	id NUMBER NOT NULL,
+	title VARCHAR2(50) NOT NULL,
+	description VARCHAR2(4000),
+	created DATE NOT NULL
+);
+
+UPDATE topic
+	SET
+	title = 'MSSQL',
+	description = 'MSSQL is ...'
+	WHERE id = 3;
+
+DELETE FROM topic;
+
+DELETE FROM topic WHERE id = 3;
+
+CREATE TABLE topic(
+	id NUMBER NOT NULL,
+	title VARCHAR2(50) NOT NULL,
+	description VARCHAR2(4000),
+	created DATE NOT NULL,
+	CONSTRAINT PK_TOPIC PRIMARY KEY(id) 
+);
+
+DROP TABLE topic; 테이블 삭제
+
+CREATE SEQUENCE SEQ_TOPIC
+
+INSERT INTO topic
+(id,title,description,created)
+VALUES(SEQ_TOPIC.NEXTVAL,'MongoDB','MongoDB is ...',SYSDATE);
+
+SELECT SEQ_TOPIC.CURRVAL FROM topic; (FROM DUAL) // 하나만 출력
+
+JOIN
+SELECT * FROM topic JOIN LEFT author ON topic.author_id = author.id;
+
+ALTER TABLE topic ADD(author_id number); 
+
+create table author(
+id number NOT NULL,
+name varchar2(20),
+profile varchar2(50),
+constraint PK_AUTHOR primary key(id)
+);
+
+INSERT INTO author
+(id,name,profile)
+VALUES(SEQ_AUTHOR.nextval,'DDang','developer');
+
+INSERT INTO author
+(id,name,profile)
+VALUES(SEQ_AUTHOR.nextval,'Non','DBA');
+
+INSERT INTO author
+(id,name,profile)
+VALUES(SEQ_AUTHOR.nextval,'oha','bloger');
+
+select topic.id TOPIC_ID, title, name from topic LEFT JOIN author ON topic.author_id = author.id;
+
+
+select * from topic LEFT JOIN author ON topic.author_id = author.id;
